@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Chip, Divider, Grid, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import { Box, Chip, Divider, Grid, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
 
 import PageTemplate from "../components/PageTemplate";
@@ -20,6 +20,11 @@ const data = {
       degree: 'A.S. Business Administration',
       graduationYear: '2010',
     },
+  ],
+  cetifications: [
+    { name: 'Acquia Certified Back End Specialist – Drupal 8', awarded: '2019' },
+    { name: 'Acquia Certified Developer – Drupal 8', awarded: '2018' },
+    { name: 'Certified Scrum Master – Scrum Institute', awarded: '2015' },
   ],
   experience: [
     {
@@ -200,6 +205,13 @@ const Resume = () => (
 
       <Divider sx={{ my: 3 }} />
 
+      {/* Certifications */}
+      <Typography variant="h6" gutterBottom>
+        Certifications
+      </Typography>
+      <Box component="ul">
+        {data.cetifications.map(item => <Box key={item.name} component="li">{item.name} ({item.awarded})</Box>)}
+      </Box>
       {/* Experience */}
       <Typography variant="h6" gutterBottom>
         Experience
