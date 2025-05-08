@@ -28,7 +28,7 @@ const data = {
 };
 
 interface ILinksProps {
-  renderAs: 'table' | 'inline',
+  renderAs?: 'table' | 'inline',
 }
 
 const LinksTable = ({ renderAs = 'table' }: ILinksProps) => {
