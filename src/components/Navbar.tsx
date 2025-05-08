@@ -1,12 +1,13 @@
 // src/components/Navbar.tsx
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+
 import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => (
   <AppBar position="static">
     <Toolbar>
-      <Typography variant="h6" sx={{ flexGrow: 1 }}>
-        My Website
+      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        Brian McVeigh
       </Typography>
       <Box>
         <Button color="inherit" component={RouterLink} to="/">
