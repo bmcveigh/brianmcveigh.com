@@ -4,10 +4,10 @@ import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => (
-  <AppBar position="static">
+  <AppBar position="static" sx={{ '& a': { color: 'inherit', textDecoration: 'none' } }}>
     <Toolbar>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        Brian McVeigh
+        <RouterLink to="/">Brian McVeigh</RouterLink>
       </Typography>
       <Box>
         <Button color="inherit" component={RouterLink} to="/">
