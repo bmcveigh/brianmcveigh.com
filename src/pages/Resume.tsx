@@ -1,11 +1,14 @@
-import { Box, Chip, Divider, Grid, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import React from "react";
+
+import { Chip, Divider, Grid, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
 
 import PageTemplate from "../components/PageTemplate";
+import LinksTable from "../components/LinksTable";
 
 const data = {
   name: 'Brian McVeigh',
-  heading: 'GitHub: https://github.com/bmcveigh | LinkedIn: https://www.linkedin.com/in/brian-mcveigh-79419586',
+  heading: <LinksTable renderAs="inline" />,
   education: [
     {
       universityName: 'George Mason University',
@@ -208,16 +211,12 @@ const Resume = () => (
               primary={`${item.position} | ${item.company}`}
               secondary={
                 <>
-                  <Typography variant="body2" color="textSecondary">
-                    {item.startDate} – {item.endDate}
-                  </Typography>
-                  <Typography variant="body1">
-                    <Box component="ul">
-                      {item.responsibilities.map(responsibility => <Box key={responsibility} component="li">{responsibility}</Box>)}
-                    </Box>
-                  </Typography>
+                  {item.startDate} – {item.endDate}
+                  <br />
+                    {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>{responsibility}<br /></React.Fragment>)}
                 </>
               }
+              sx={{ fontSize: 14 }}
             />
           </ListItem>
         ))}
@@ -230,7 +229,7 @@ const Resume = () => (
       </Typography>
       <List>
         {data.education.map(item => (
-          <ListItem>
+          <ListItem key={item.degree}>
             <ListItemText
               key={item.degree}
               primary={`${item.degree} - ${item.universityName}`}

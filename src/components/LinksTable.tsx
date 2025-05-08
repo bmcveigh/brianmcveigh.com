@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Table,
   TableBody,
@@ -7,6 +9,7 @@ import {
   Box,
   Paper,
   SvgIcon,
+  Grid,
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
@@ -24,7 +27,28 @@ const data = {
   ],
 };
 
-const LinksTable = () => {
+interface ILinksProps {
+  renderAs: 'table' | 'inline',
+}
+
+const LinksTable = ({ renderAs = 'table' }: ILinksProps) => {
+  if (renderAs === 'inline') {
+    return (
+      <Grid container>
+        {data.links.map(link => (
+          <React.Fragment key={link.href}>
+            <Grid sx={{ marginLeft: 1, marginRight: 1 }}>{link.icon}</Grid>
+            <Grid>
+              <Link href={link.href} target="_blank" rel="noopener">
+                {link.href}
+              </Link>
+            </Grid>
+          </React.Fragment>
+        ))}
+      </Grid>
+    );
+  }
+
   return (
     <Box component={Paper} sx={{ maxWidth: 500, p: 3, mt: 4 }}>
       <Table>
