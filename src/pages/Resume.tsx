@@ -213,7 +213,7 @@ const Resume = () => (
                 <>
                   {item.startDate} – {item.endDate}
                   <br />
-                    {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>{responsibility}<br /></React.Fragment>)}
+                    {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>&nbsp;&nbsp;- {responsibility}<br /></React.Fragment>)}
                 </>
               }
               sx={{ fontSize: 14 }}
