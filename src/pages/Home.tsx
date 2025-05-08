@@ -1,6 +1,3 @@
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-
 import PageTemplate from "../components/PageTemplate";
 
 const Home = () => (

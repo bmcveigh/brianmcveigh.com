@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 interface IPageTemplate {
   children: any,
@@ -9,9 +9,9 @@ interface IPageTemplate {
 const PageTemplate = ({ children, title }: IPageTemplate) => (
   <Box>
     <Typography variant="h3">{title}</Typography>
-    <Typography>
+    <Box>
       {children}
-    </Typography>
+    </Box>
   </Box>
 );
 
