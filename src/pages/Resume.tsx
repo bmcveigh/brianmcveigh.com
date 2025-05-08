@@ -1,13 +1,16 @@
 import React from "react";
 
-import { Box, Chip, Divider, Grid, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import { Box, Button, Chip, Divider, Grid, Link, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
 
 import PageTemplate from "../components/PageTemplate";
 import LinksTable from "../components/LinksTable";
 
+import GoogleIcon from '@mui/icons-material/Google';
+
 const data = {
   name: 'Brian McVeigh',
+  googleDocsUrl: 'https://docs.google.com/document/d/1dAVmRQVhuSWccIN80f_OKxFgDRkcNXCP/edit',
   heading: <LinksTable renderAs="inline" />,
   education: [
     {
@@ -195,6 +198,13 @@ const data = {
 const Resume = () => (
   <PageTemplate title="Resume">
     <Paper elevation={3} sx={{ p: 4 }}>
+      <Box sx={{ marginBottom: 2 }}>
+        <Link href={data.googleDocsUrl} target="_blank">
+          <Button variant="contained">
+            <Box component="span">View in Google Docs </Box> <GoogleIcon fontSize="small" sx={{ marginLeft: 1 }} />
+          </Button>
+        </Link>
+      </Box>
       {/* Header */}
       <Typography variant="h4" gutterBottom>
         {data.name}
@@ -225,7 +235,7 @@ const Resume = () => (
                 <>
                   {item.startDate} – {item.endDate}
                   <br />
-                    {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>&nbsp;&nbsp;- {responsibility}<br /></React.Fragment>)}
+                  {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>&nbsp;&nbsp;- {responsibility}<br /></React.Fragment>)}
                 </>
               }
               sx={{ fontSize: 14 }}
