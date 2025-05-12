@@ -1,11 +1,8 @@
 import React from "react";
-
 import { Box, Button, Chip, Divider, Grid, Link, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
-
 import PageTemplate from "../components/PageTemplate";
 import LinksTable from "../components/LinksTable";
-
 import GoogleIcon from '@mui/icons-material/Google';
 
 const data = {
@@ -139,59 +136,59 @@ const data = {
   ],
   skills: [
     // Languages & Programming
-    'JavaScript',
-    'PHP',
-    'Java',
-    'SQL',
-    'Objective-C',
-    'VBA',
-    'HTML',
-    'CSS',
+    { name: 'JavaScript', years: 10 },
+    { name: 'PHP', years: 9 },
+    { name: 'Java', years: 3 },
+    { name: 'SQL', years: 10 },
+    { name: 'Objective-C', years: 1 },
+    { name: 'VBA', years: 2 },
+    { name: 'HTML', years: 10 },
+    { name: 'CSS', years: 10 },
 
     // Front-end Frameworks & Libraries
-    'React',
-    'Redux',
-    'Angular',
-    'Knockout.js',
-    'Joomla',
-    'Drupal 7/8',
-    'WordPress',
+    { name: 'React', years: 5 },
+    { name: 'Redux', years: 4 },
+    { name: 'Angular', years: 2 },
+    { name: 'Knockout.js', years: 1 },
+    { name: 'Joomla', years: 1 },
+    { name: 'Drupal 6-10', years: 11 },
+    { name: 'WordPress', years: 3 },
 
     // Back-end & Full-stack
-    'Node.js',
-    'Spring',
-    'Hibernate',
+    { name: 'Node.js', years: 5 },
+    { name: 'Spring', years: 2 },
+    { name: 'Hibernate', years: 2 },
 
     // DevOps & CI/CD
-    'Docker',
-    'Jenkins',
-    'AWS',
-    'Acquia',
-    'CI/CD Pipelines',
-    'DevOps Automation',
+    { name: 'Docker', years: 4 },
+    { name: 'Jenkins', years: 4 },
+    { name: 'AWS', years: 8 },
+    { name: 'Acquia', years: 4 },
+    { name: 'CI/CD Pipelines', years: 4 },
+    { name: 'DevOps Automation', years: 4 },
 
     // Testing
-    'Selenium',
-    'Unit Testing',
-    'Drupal Testing Modules',
+    { name: 'Selenium', years: 2 },
+    { name: 'Unit Testing', years: 5 },
+    { name: 'Drupal Testing Modules', years: 3 },
 
     // Databases
-    'MySQL',
-    'Microsoft Access',
-    'Drupal Database Abstraction Layer',
-    'PDO',
+    { name: 'MySQL', years: 8 },
+    { name: 'Microsoft Access', years: 1 },
+    { name: 'Drupal Database Abstraction Layer', years: 8 },
+    { name: 'PDO', years: 8 },
 
     // Tools & Methodologies
-    'Git',
-    'Docksal',
-    'Agile Development',
-    'Mentoring & Technical Leadership',
-    'Code Reviews',
-    'Technical Interviews',
-    'Information Security',
-    'RESTful APIs',
-    'Infrastructure Management',
-    'Data Visualization',
+    { name: 'Git', years: 9 },
+    { name: 'Docksal', years: 3 },
+    { name: 'Agile Development', years: 8 },
+    { name: 'Mentoring & Technical Leadership', years: 4 },
+    { name: 'Code Reviews', years: 6 },
+    { name: 'Technical Interviews', years: 4 },
+    { name: 'Information Security', years: 4 },
+    { name: 'RESTful APIs', years: 6 },
+    { name: 'Infrastructure Management', years: 4 },
+    { name: 'Data Visualization', years: 5 },
   ],
 };
 
@@ -205,6 +202,7 @@ const Resume = () => (
           </Button>
         </Link>
       </Box>
+
       {/* Header */}
       <Typography variant="h4" gutterBottom>
         {data.name}
@@ -222,6 +220,7 @@ const Resume = () => (
       <Box component="ul">
         {data.cetifications.map(item => <Box key={item.name} component="li">{item.name} ({item.awarded})</Box>)}
       </Box>
+
       {/* Experience */}
       <Typography variant="h6" gutterBottom>
         Experience
@@ -235,7 +234,11 @@ const Resume = () => (
                 <>
                   {item.startDate} – {item.endDate}
                   <br />
-                  {item.responsibilities.map(responsibility => <React.Fragment key={responsibility}>&nbsp;&nbsp;- {responsibility}<br /></React.Fragment>)}
+                  {item.responsibilities.map(responsibility => (
+                    <React.Fragment key={responsibility}>
+                      &nbsp;&nbsp;- {responsibility}<br />
+                    </React.Fragment>
+                  ))}
                 </>
               }
               sx={{ fontSize: 14 }}
@@ -253,26 +256,49 @@ const Resume = () => (
         {data.education.map(item => (
           <ListItem key={item.degree}>
             <ListItemText
-              key={item.degree}
               primary={`${item.degree} - ${item.universityName}`}
               secondary={item.graduationYear}
             />
           </ListItem>
         ))}
       </List>
+
       {/* Skills */}
       <Divider sx={{ my: 3 }} />
       <Typography variant="h6" gutterBottom>
         Skills
       </Typography>
-      <Grid container spacing={1}>
-        {data.skills.map((skill) => (
-          <Grid key={skill}>
-            <Chip label={skill} variant="outlined" />
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          padding: 1,
+          '& .MuiGrid-item': {
+            padding: 1,
+            display: 'flex',
+            alignItems: 'center',
+          }
+        }}
+      >
+        {[...data.skills]
+          .sort((a, b) => b.years - a.years)
+          .map((skill) => (
+          <Grid key={skill.name}>
+            <Chip
+              label={`${skill.name} (${skill.years}y)`}
+              variant="outlined"
+              sx={{
+                // transform: `scale(${1 + skill.years * 0.05})`,
+                bgcolor: 'primary.main',
+                color: 'common.black',
+                fontSize: 10 + skill.years,
+              }}
+            />
           </Grid>
         ))}
       </Grid>
     </Paper>
   </PageTemplate>
 );
+
 export default Resume;

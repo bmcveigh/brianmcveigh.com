@@ -6,13 +6,16 @@ interface IPageTemplate {
   title: string,
 }
 
-const PageTemplate = ({ children, title }: IPageTemplate) => (
-  <Box>
-    <Typography variant="h3">{title}</Typography>
+const PageTemplate = ({ children, title }: IPageTemplate) => {
+  document.title = `Brian McVeigh | ${title}`;
+  return (
     <Box>
-      {children}
+      <Typography variant="h3">{title}</Typography>
+      <Box>
+        {children}
+      </Box>
     </Box>
-  </Box>
-);
+  )
+};
 
 export default PageTemplate;
