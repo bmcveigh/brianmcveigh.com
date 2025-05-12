@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Chip, Divider, Grid, Link, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import { Badge, Box, Button, Chip, Divider, Grid, Link, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import PageTemplate from "../components/PageTemplate";
 import LinksTable from "../components/LinksTable";
@@ -283,19 +283,21 @@ const Resume = () => (
         {[...data.skills]
           .sort((a, b) => b.years - a.years)
           .map((skill) => (
-          <Grid key={skill.name}>
-            <Chip
-              label={`${skill.name} (${skill.years}y)`}
-              variant="outlined"
-              sx={{
-                // transform: `scale(${1 + skill.years * 0.05})`,
-                bgcolor: 'primary.main',
-                color: 'common.black',
-                fontSize: 10 + skill.years,
-              }}
-            />
-          </Grid>
-        ))}
+            <Grid key={skill.name}>
+              <Badge color="secondary" badgeContent={`${skill.years}y`}>
+                <Chip
+                  label={skill.name}
+                  variant="outlined"
+                  sx={{
+                    // transform: `scale(${1 + skill.years * 0.05})`,
+                    bgcolor: 'primary.dark',
+                    color: 'common.white',
+                    fontSize: 10 + skill.years,
+                  }}
+                />
+              </Badge>
+            </Grid>
+          ))}
       </Grid>
     </Paper>
   </PageTemplate>
