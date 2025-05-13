@@ -1,6 +1,7 @@
 import { CssBaseline, Container, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import GitHubRibbon from './components/GitHubRibbon';
 import Home from './pages/Home';
 import Resume from './pages/Resume';
 import Links from './pages/Links';
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
         <CssBaseline />
         <Navbar />
+        <GitHubRibbon username="bmcveigh" repository="brianmcveigh.com" />
         <Container maxWidth="md" sx={{ mt: 4 }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -25,4 +27,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
