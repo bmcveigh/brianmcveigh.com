@@ -7,6 +7,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const data = {
   name: 'Brian McVeigh',
+  displayGoogleDocsButton: false,
   googleDocsUrl: 'https://docs.google.com/document/d/1dAVmRQVhuSWccIN80f_OKxFgDRkcNXCP/edit',
   heading: <LinksTable renderAs="inline" />,
   education: [
@@ -195,13 +196,15 @@ const data = {
 const Resume = () => (
   <PageTemplate title="Resume">
     <Paper elevation={3} sx={{ p: 4 }}>
-      <Box sx={{ marginBottom: 2 }}>
-        <Link href={data.googleDocsUrl} target="_blank">
-          <Button variant="contained">
-            <Box component="span">View in Google Docs </Box> <GoogleIcon fontSize="small" sx={{ marginLeft: 1 }} />
-          </Button>
-        </Link>
-      </Box>
+      {data.displayGoogleDocsButton ? (
+          <Box sx={{ marginBottom: 2 }}>
+          <Link href={data.googleDocsUrl} target="_blank">
+            <Button variant="contained">
+              <Box component="span">View in Google Docs </Box> <GoogleIcon fontSize="small" sx={{ marginLeft: 1 }} />
+            </Button>
+          </Link>
+        </Box>
+      ) : null}
 
       {/* Header */}
       <Typography variant="h4" gutterBottom>
